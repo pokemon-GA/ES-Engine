@@ -48,21 +48,27 @@ def ES(list2):
     data= [list_sum_0, list_sum_1, list_sum_2, list_sum_3, list_sum_4, list_sum_5, list_sum_6, list_sum_7, list_sum_8, list_sum_9]
     sorted_data = sorted(data, reverse=True)
 
-
     #選択
     ranking_1 = sorted_data[1]
     ranking_2 = sorted_data[2]
     ranking_3 = sorted_data[3]
     ranking_4 = sorted_data[4]
 
-    result = [ranking_1, ranking_2, ranking_3, ranking_4]
+    selected_result = [ranking_1, ranking_2, ranking_3, ranking_4]
 
+    #マップデータ
+    plot_rank_1 = ranking_1[0]
+    plot_rank_2 = ranking_2[0]
+    plot_rank_3 = ranking_3[0]
+    plot_rank_4 = ranking_4[0]
+
+    plot_data = [plot_rank_1, plot_rank_2, plot_rank_3, plot_rank_4]
 
     #生き残ったポケモン
-    ranking_1_pokemon = list2[result[0][1]][0:10]
-    ranking_2_pokemon = list2[result[1][1]][0:10]
-    ranking_3_pokemon = list2[result[2][1]][0:10]
-    ranking_4_pokemon = list2[result[3][1]][0:10]
+    ranking_1_pokemon = list2[selected_result[0][1]][0:10]
+    ranking_2_pokemon = list2[selected_result[1][1]][0:10]
+    ranking_3_pokemon = list2[selected_result[2][1]][0:10]
+    ranking_4_pokemon = list2[selected_result[3][1]][0:10]
 
 
     #突然変異
@@ -97,7 +103,7 @@ def ES(list2):
     ranking_12_pokemon_changed = ranking_2_pokemon_changed
 
     result = [ranking_1_pokemon, ranking_2_pokemon, ranking_3_pokemon, ranking_4_pokemon, ranking_1_pokemon_changed, ranking_2_pokemon_changed, ranking_3_pokemon_changed, ranking_4_pokemon_changed, ranking_11_pokemon_changed, ranking_12_pokemon_changed]
-    return result
+    return result, plot_data
 
 
 #初期集団の生成
@@ -108,9 +114,9 @@ list2 = np.array(list1).reshape(-1, 10).tolist()
 
 
 gen = 1
-while gen <= 100000:
+while gen <= 100:
     ES(list2)
-    print(f"Generation_{gen}: {ES(list2)}")
+    print(f"Generation_{gen}: {ES(list2)[1]}")
     gen = gen + 1
 
 print("End!")
