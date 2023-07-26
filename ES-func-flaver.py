@@ -143,126 +143,15 @@ def plot_graph_1(list2):
         sum_9 = sum_9 + list2[9][i]
     sum = [sum_0, sum_1, sum_2, sum_3, sum_4, sum_5, sum_6, sum_7, sum_8, sum_9]
     sorted_sum_data = sorted(sum, reverse=True)
-    ranking_1 = sorted_sum_data[0]
-    return ranking_1
-
-#Rank_2
-def plot_graph_2(list2):
-    sum_0=0
-    for i in range(0, 10):
-        sum_0 = sum_0 + list2[0][i]
-    sum_1=0
-    for i in range(0,10):
-        sum_1 = sum_1 + list2[1][i]
-    sum_2=0
-    for i in range(0,10):
-        sum_2 = sum_2 + list2[2][i]
-    sum_3=0
-    for i in range(0,10):
-        sum_3 = sum_3 + list2[3][i]
-    sum_4=0
-    for i in range(0,10):
-        sum_4 = sum_4 + list2[4][i]
-    sum_5=0
-    for i in range(0,10):
-        sum_5 = sum_5 + list2[5][i]
-    sum_6=0
-    for i in range(0,10):
-        sum_6 = sum_6 + list2[6][i]
-    sum_7=0
-    for i in range(0,10):
-        sum_7 = sum_7 + list2[7][i]
-    sum_8=0
-    for i in range(0,10):
-        sum_8 = sum_8 + list2[8][i]
-    sum_9=0
-    for i in range(0,10):
-        sum_9 = sum_9 + list2[9][i]
-    sum = [sum_0, sum_1, sum_2, sum_3, sum_4, sum_5, sum_6, sum_7, sum_8, sum_9]
-    sorted_sum_data = sorted(sum, reverse=True)
-    ranking_2 = sorted_sum_data[1]
-    return ranking_2
-
-#Rank_3
-def plot_graph_3(list2):
-    sum_0=0
-    for i in range(0, 10):
-        sum_0 = sum_0 + list2[0][i]
-    sum_1=0
-    for i in range(0,10):
-        sum_1 = sum_1 + list2[1][i]
-    sum_2=0
-    for i in range(0,10):
-        sum_2 = sum_2 + list2[2][i]
-    sum_3=0
-    for i in range(0,10):
-        sum_3 = sum_3 + list2[3][i]
-    sum_4=0
-    for i in range(0,10):
-        sum_4 = sum_4 + list2[4][i]
-    sum_5=0
-    for i in range(0,10):
-        sum_5 = sum_5 + list2[5][i]
-    sum_6=0
-    for i in range(0,10):
-        sum_6 = sum_6 + list2[6][i]
-    sum_7=0
-    for i in range(0,10):
-        sum_7 = sum_7 + list2[7][i]
-    sum_8=0
-    for i in range(0,10):
-        sum_8 = sum_8 + list2[8][i]
-    sum_9=0
-    for i in range(0,10):
-        sum_9 = sum_9 + list2[9][i]
-    sum = [sum_0, sum_1, sum_2, sum_3, sum_4, sum_5, sum_6, sum_7, sum_8, sum_9]
-    sorted_sum_data = sorted(sum, reverse=True)
-    ranking_3 = sorted_sum_data[2]
-    return ranking_3
-
-#Rank_4
-def plot_graph_4(list2):
-    sum_0=0
-    for i in range(0, 10):
-        sum_0 = sum_0 + list2[0][i]
-    sum_1=0
-    for i in range(0,10):
-        sum_1 = sum_1 + list2[1][i]
-    sum_2=0
-    for i in range(0,10):
-        sum_2 = sum_2 + list2[2][i]
-    sum_3=0
-    for i in range(0,10):
-        sum_3 = sum_3 + list2[3][i]
-    sum_4=0
-    for i in range(0,10):
-        sum_4 = sum_4 + list2[4][i]
-    sum_5=0
-    for i in range(0,10):
-        sum_5 = sum_5 + list2[5][i]
-    sum_6=0
-    for i in range(0,10):
-        sum_6 = sum_6 + list2[6][i]
-    sum_7=0
-    for i in range(0,10):
-        sum_7 = sum_7 + list2[7][i]
-    sum_8=0
-    for i in range(0,10):
-        sum_8 = sum_8 + list2[8][i]
-    sum_9=0
-    for i in range(0,10):
-        sum_9 = sum_9 + list2[9][i]
-    sum = [sum_0, sum_1, sum_2, sum_3, sum_4, sum_5, sum_6, sum_7, sum_8, sum_9]
-    sorted_sum_data = sorted(sum, reverse=True)
-    ranking_3 = sorted_sum_data[3]
-    return ranking_3
+    ranking = sorted_sum_data[0:4]
+    return ranking
 
 gen = 1
 lists = []
-plot_lists_1 = []
-plot_lists_2 = []
-plot_lists_3 = []
-plot_lists_4 = []
+plot_ranking_1 = []
+plot_ranking_2 = []
+plot_ranking_3 = []
+plot_ranking_4 = []
 
 while gen <= 100:
     list2 = ES(list2)
@@ -270,21 +159,12 @@ while gen <= 100:
     print(f"Generation_{gen}: {list2}")
 
     #グラフの描画
-    plot_1 = plot_graph_1(list2)
-    plot_lists_1.append(plot_1)
-    print(f"lists_{gen}: {plot_lists_1}")
-
-    plot_2 = plot_graph_2(list2)
-    plot_lists_2.append(plot_2)
-    print(f"lists_{gen}: {plot_lists_2}")
-
-    plot_3 = plot_graph_3(list2)
-    plot_lists_3.append(plot_3)
-    print(f"lists_{gen}: {plot_lists_3}")
-
-    plot_4 = plot_graph_4(list2)
-    plot_lists_4.append(plot_4)
-    print(f"lists_{gen}: {plot_lists_4}")
+    plot = plot_graph_1(list2)
+    plot_ranking_1.append(plot[0])
+    plot_ranking_2.append(plot[1])
+    plot_ranking_3.append(plot[2])
+    plot_ranking_4.append(plot[3])
+    print(f"lists_{gen}: 1st {plot_ranking_1}\n 2nd {plot_ranking_2}\n 3rd {plot_ranking_3}\n 4th {plot_ranking_4}")
 
     print("End!")
 
@@ -297,10 +177,10 @@ ax.set_xlabel('Generation')
 ax.set_ylabel('Total Score')
 ax.set_title('Evolution Strategy')
 
-ax.plot(gen_number, plot_lists_1, label="1st")
-ax.plot(gen_number, plot_lists_2, label="2nd")
-ax.plot(gen_number, plot_lists_3, label="3rd")
-ax.plot(gen_number, plot_lists_4, label="4th")
+ax.plot(gen_number, plot_ranking_1, label="1st")
+ax.plot(gen_number, plot_ranking_2, label="2nd")
+ax.plot(gen_number, plot_ranking_3, label="3rd")
+ax.plot(gen_number, plot_ranking_4, label="4th")
 
 ax.legend(loc=0)
 fig.tight_layout()
