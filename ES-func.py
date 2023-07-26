@@ -50,10 +50,10 @@ def ES(list2):
     sorted_data = sorted(data, reverse=True)
 
     #選択
-    ranking_1 = sorted_data[1]
-    ranking_2 = sorted_data[2]
-    ranking_3 = sorted_data[3]
-    ranking_4 = sorted_data[4]
+    ranking_1 = sorted_data[0]
+    ranking_2 = sorted_data[1]
+    ranking_3 = sorted_data[2]
+    ranking_4 = sorted_data[3]
 
     selected_result = [ranking_1, ranking_2, ranking_3, ranking_4]
 
@@ -183,22 +183,19 @@ lists = []
 plot_lists = []
 
 while gen <= 100:
-    ES(list2)
-    # print(f"Generation_{gen}: {ES(list2)}")
-    plot = plot_graph(ES(list2))
-    # print(f"plot_{gen}: {plot}")
+    list2 = ES(list2)
+    print(f"Generation_{gen}: {list2}")
+    plot = plot_graph(list2)
+    print(f"plot_{gen}: {plot}")
     lists.append(plot)
     print(f"lists_{gen}: {lists}")
-
-    plot_1 = plot_graph_1(ES(list2))
+    plot_1 = plot_graph_1(list2)
     plot_lists.append(plot_1)
     print(f"lists_{gen}: {plot_lists}")
-
-
     gen = gen + 1
     print("End!")
 
-print(lists)
+print(plot_lists)
 
 left = list(range(1,101,1))
 height = plot_lists
