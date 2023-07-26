@@ -1,5 +1,6 @@
 import numpy as np
 import random
+import matplotlib.pyplot as plt
 
 
 def ES(list2):
@@ -56,14 +57,6 @@ def ES(list2):
 
     selected_result = [ranking_1, ranking_2, ranking_3, ranking_4]
 
-    #マップデータ
-    plot_rank_1 = ranking_1[0]
-    plot_rank_2 = ranking_2[0]
-    plot_rank_3 = ranking_3[0]
-    plot_rank_4 = ranking_4[0]
-
-    plot_data = [plot_rank_1, plot_rank_2, plot_rank_3, plot_rank_4]
-
     #生き残ったポケモン
     ranking_1_pokemon = list2[selected_result[0][1]][0:10]
     ranking_2_pokemon = list2[selected_result[1][1]][0:10]
@@ -103,7 +96,7 @@ def ES(list2):
     ranking_12_pokemon_changed = ranking_2_pokemon_changed
 
     result = [ranking_1_pokemon, ranking_2_pokemon, ranking_3_pokemon, ranking_4_pokemon, ranking_1_pokemon_changed, ranking_2_pokemon_changed, ranking_3_pokemon_changed, ranking_4_pokemon_changed, ranking_11_pokemon_changed, ranking_12_pokemon_changed]
-    return result, plot_data
+    return result
 
 
 #初期集団の生成
@@ -112,11 +105,102 @@ for i in range(0,100):
     list1[i] = random.randint(1,10)
 list2 = np.array(list1).reshape(-1, 10).tolist()
 
+#マッププロット
+def plot_graph(list2):
+    sum_0=0
+    for i in range(0, 10):
+        sum_0 = sum_0 + list2[0][i]
+    sum_1=0
+    for i in range(0,10):
+        sum_1 = sum_1 + list2[1][i]
+    sum_2=0
+    for i in range(0,10):
+        sum_2 = sum_2 + list2[2][i]
+    sum_3=0
+    for i in range(0,10):
+        sum_3 = sum_3 + list2[3][i]
+    sum_4=0
+    for i in range(0,10):
+        sum_4 = sum_4 + list2[4][i]
+    sum_5=0
+    for i in range(0,10):
+        sum_5 = sum_5 + list2[5][i]
+    sum_6=0
+    for i in range(0,10):
+        sum_6 = sum_6 + list2[6][i]
+    sum_7=0
+    for i in range(0,10):
+        sum_7 = sum_7 + list2[7][i]
+    sum_8=0
+    for i in range(0,10):
+        sum_8 = sum_8 + list2[8][i]
+    sum_9=0
+    for i in range(0,10):
+        sum_9 = sum_9 + list2[9][i]
+    sum = [sum_0, sum_1, sum_2, sum_3, sum_4, sum_5, sum_6, sum_7, sum_8, sum_9]
+    sorted_sum_data = sorted(sum, reverse=True)
+    return sorted_sum_data
+
+def plot_graph_1(list2):
+    sum_0=0
+    for i in range(0, 10):
+        sum_0 = sum_0 + list2[0][i]
+    sum_1=0
+    for i in range(0,10):
+        sum_1 = sum_1 + list2[1][i]
+    sum_2=0
+    for i in range(0,10):
+        sum_2 = sum_2 + list2[2][i]
+    sum_3=0
+    for i in range(0,10):
+        sum_3 = sum_3 + list2[3][i]
+    sum_4=0
+    for i in range(0,10):
+        sum_4 = sum_4 + list2[4][i]
+    sum_5=0
+    for i in range(0,10):
+        sum_5 = sum_5 + list2[5][i]
+    sum_6=0
+    for i in range(0,10):
+        sum_6 = sum_6 + list2[6][i]
+    sum_7=0
+    for i in range(0,10):
+        sum_7 = sum_7 + list2[7][i]
+    sum_8=0
+    for i in range(0,10):
+        sum_8 = sum_8 + list2[8][i]
+    sum_9=0
+    for i in range(0,10):
+        sum_9 = sum_9 + list2[9][i]
+    sum = [sum_0, sum_1, sum_2, sum_3, sum_4, sum_5, sum_6, sum_7, sum_8, sum_9]
+    sorted_sum_data = sorted(sum, reverse=True)
+    ranking_1 = sorted_sum_data[0]
+    return ranking_1
+
 
 gen = 1
+lists = []
+plot_lists = []
+
 while gen <= 100:
     ES(list2)
-    print(f"Generation_{gen}: {ES(list2)[1]}")
-    gen = gen + 1
+    # print(f"Generation_{gen}: {ES(list2)}")
+    plot = plot_graph(ES(list2))
+    # print(f"plot_{gen}: {plot}")
+    lists.append(plot)
+    print(f"lists_{gen}: {lists}")
 
-print("End!")
+    plot_1 = plot_graph_1(ES(list2))
+    plot_lists.append(plot_1)
+    print(f"lists_{gen}: {plot_lists}")
+
+
+    gen = gen + 1
+    print("End!")
+
+print(lists)
+
+left = list(range(1,101,1))
+height = plot_lists
+plt.plot(left, height)
+plt.show()
