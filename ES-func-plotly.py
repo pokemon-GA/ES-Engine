@@ -1,7 +1,7 @@
 import numpy as np
 import random
-import matplotlib.pyplot as plt
-
+# グラフ可視化
+import plotly.graph_objects as go
 
 def ES(list2):
     #評価関数の前処理 (各ポケモンのsumを表示)
@@ -169,20 +169,58 @@ while gen <= 100:
     print("End!")
 
 
+#x range
+gen_number = list(range(1,101,1))
+
+fig = go.Figure()
 
 gen_number = list(range(1,101,1))
 
-fig, ax = plt.subplots()
-ax.set_xlabel('Generation')
-ax.set_ylabel('Total Score')
-ax.set_title('Evolution Strategy')
+fig.add_trace(
+    go.Scatter(x = gen_number, #X_label
+               y = plot_ranking_1, #y_label
+              text = "1st", #
+              mode = 'lines', #折れ線グラフ
+              name = '1st', #line_name
+              line=dict(color='rgb(239, 85, 59)', width=4, dash='solid') #line_type_detail      
+    )
+)
+fig.add_trace(
+    go.Scatter(x = gen_number,
+               y = plot_ranking_2,
+              text = "2nd",
+              mode = 'lines',
+              name = '2nd',
+              line=dict(color='rgb(25, 211, 243)', width=4, dash='solid')  
+              
+    )
+)
 
-ax.plot(gen_number, plot_ranking_1, label="1st")
-ax.plot(gen_number, plot_ranking_2, label="2nd")
-ax.plot(gen_number, plot_ranking_3, label="3rd")
-ax.plot(gen_number, plot_ranking_4, label="4th")
+fig.add_trace(
+    go.Scatter(x = gen_number,
+               y = plot_ranking_3,
+              text = "3rd",
+              mode = 'lines',
+              line=dict(color='rgb(188, 189, 34)', width=4, dash='solid'),
+              name = '3rd'
+              
+    )
+)
 
-ax.legend(loc=0)
-fig.tight_layout()
+fig.add_trace(
+    go.Scatter(x = gen_number,
+               y = plot_ranking_4,
+              text = "4th",
+              mode = 'lines',
+              line=dict(color='firebrick', width=4, dash='solid'),
+              name = '4th'
+    )
+)
 
-plt.show()
+fig.update_layout(
+    xaxis_title = 'Generation',
+    yaxis_title = 'Total Score'
+)
+
+    
+fig.show()
