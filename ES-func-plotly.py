@@ -1,4 +1,3 @@
-import numpy as np
 import random
 # グラフ可視化
 import plotly.graph_objects as go
